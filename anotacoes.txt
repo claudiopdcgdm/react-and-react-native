@@ -1,0 +1,5 @@
+remover diretorio apenas do GIT e manter local
+
+git rm -r --cached "nome do direotrio"
+git commit -m "Removed folder from repository"
+git push origin master

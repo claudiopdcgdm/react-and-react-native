@@ -84,11 +84,8 @@ class Home extends React.Component {
                 .then((j) => {
                     this.setState({ pedidos: j })
                 })
-                .catch(() => {
-                    let erro = {
-                        code_error: '404',
-                        desc_error: 'Não foi possivel conectar na API'
-                    }
+                .catch((error) => {
+                    console.log('Erro')
                 })
         } else {
             const url = `https://claudiomorais.herokuapp.com/api/apipedidos/${uid}/?format=json`
@@ -100,10 +97,7 @@ class Home extends React.Component {
                     console.log(j)
                 })
                 .catch(() => {
-                    let erro = {
-                        code_error: '404',
-                        desc_error: 'Não foi possivel conectar na API'
-                    }
+                    console.log('Erro')
                 })
         }
     }
@@ -154,12 +148,3 @@ class Home extends React.Component {
     }
 }
 export default Home
-
-// client: "91925681491"
-// code: "900299"
-// create_at: "2021-09-24T16:22:57-03:00"
-// deadline: "2021-09-24T16:22:57-03:00"
-// id: 200
-// payment: "BP"
-// status: "A"
-// total: 189.8
