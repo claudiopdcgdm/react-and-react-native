@@ -20,14 +20,6 @@ class Home extends React.Component {
         this.loadpedidos()
     }
 
-    // componentDidUpdate(prevState) {
-
-    //     if (this.state.msg !== prevState.msg) {
-
-    //     }
-
-    // }
-
     loadpedidos() {
 
         // let url = 'http://127.0.0.1:8000/api/apipedidos/?format=json'
@@ -47,7 +39,7 @@ class Home extends React.Component {
             return
         }
 
-        // let url = `http://127.0.0.1:8000/api-pedidos/apipedidos/${uid}/?format=json`
+
         let url = `https://claudiomorais.herokuapp.com/api/apipedidos/${uid}/?format=json`
         let data = {
             id: parseInt(uid),
@@ -66,6 +58,7 @@ class Home extends React.Component {
         fetch(url, resquestInfo)
             .then((response) => response.json())
             .then((json) => {
+                alert(`Status do atualizado`)
                 window.location.reload();
             })
             .catch(e => console.log(e))
@@ -85,19 +78,22 @@ class Home extends React.Component {
                     this.setState({ pedidos: j })
                 })
                 .catch((error) => {
-                    console.log('Erro')
+
                 })
         } else {
             const url = `https://claudiomorais.herokuapp.com/api/apipedidos/${uid}/?format=json`
+
             fetch(url)
                 .then((resp) => resp.json())
                 .then((j) => {
+                    console.log(j)
                     let data = [j]
                     this.setState({ pedidos: data })
                     console.log(j)
                 })
-                .catch(() => {
-                    console.log('Erro')
+                .catch((error) => {
+                    alert(`Nada encontrado com esse ID: ${uid}`)
+                    window.location.reload()
                 })
         }
     }
@@ -109,13 +105,15 @@ class Home extends React.Component {
                 <p> URL = 'https://claudiomorais.herokuapp.com/api/apipedidos/'  </p>
                 <h3>Funcionalidade</h3>
                 <p>
-                    Este Painel é apenas para testar os metodos <strong>GET, PATCH.</strong>
+                    Este painel é apenas para testar os metodos <strong> GET, PATCH.</strong></p>
+                <p>
                     Api disponibiliza o CPF do cliente para ser verificado
-                    a situação do nome do cliente (Score, negativado, etc...).
+                    a situação dos dados do cliente (Score, bom pagador, etc...).</p>
+                <p>
                     A partir dessa validação pode alterar o status do pedido
                     de pendente para aprovado ou reprovado.
                     observe que são entregues pelo endpoit apenas dados cujo
-                    a forma de pagamento seja igual a BP - (Boleto-Parcelado) e status pendente.
+                    a forma de pagamento seja igual a BP - (Boleto-Parcelado).
                 </p>
                 <hr />
                 <div className='ipt' >
